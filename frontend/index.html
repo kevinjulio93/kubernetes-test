@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CRUD Mascotas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Listado de mascotas</h1>
+
+    <form id="form-mascota">
+      <input type="text" id="nombre" placeholder="Nombre" required />
+      <input type="text" id="grupo" placeholder="Grupo (mamífero, ave, pez...)" required />
+      <input type="number" id="patas" placeholder="Número de patas" min="0" required />
+      <input type="text" id="alimentacion" placeholder="Herbívoro/Carnívoro/Omnívoro" required />
+      <button type="submit">Agregar</button>
+    </form>
+
+    <ul id="lista-mascotas"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
