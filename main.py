@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 # Permitir CORS para que el frontend (servido desde otro origen) pueda consumir la API
@@ -18,8 +19,14 @@ PETS = [
 
 @app.route('/', methods=['GET'])
 def greet():
-    # Devolver un JSON simple en la raíz
-    return jsonify(message="API de mascotas. Use /mascotas para obtener la lista")
+    # Devolver un JSON simple en la raíz, incluyendo variables específicas del entorno si existen
+    # Leer sólo desde las variables de entorno del sistema
+    env_vars = {
+        'APP_SECRET': os.environ.get('APP_SECRET'),
+        'API_KEY': os.environ.get('API_KEY'),
+        'FRONTEND_TOKEN': os.environ.get('FRONTEND_TOKEN')
+    }
+    return jsonify(message="API de mascotas. Use /mascotas para obtener la lista", env=env_vars)
 
 
 @app.route('/mascotas', methods=['GET'])

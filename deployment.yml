@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-api-config
+data:
+  FRONTEND_TOKEN: "7e9a1b2c3d4f5a60"
+
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8s-api-secret
+type: Opaque
+stringData:
+  APP_SECRET: "5f8b3c2a9d4e7f10"
+  API_KEY: "ab12cd34ef56gh78"
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-api
+  labels:
+    app: k8s-api
+spec:
+  replicas: 3   # 🔥 cantidad de réplicas de tu app
+  selector:
+    matchLabels:
+      app: k8s-api
+  template:
+    metadata:
+      labels:
+        app: k8s-api
+    spec:
+      containers:
+        - name: k8s-api-container
+          image: docker.io/kevinjuliom93/k8s-api:v4
+          ports:
+            - containerPort: 5000
+      envFrom:
+      - configMapRef:
+        name: k8s-api-config
+      - secretRef:
+        name: k8s-api-secret
