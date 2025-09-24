@@ -4,10 +4,7 @@ metadata:
   name: k8s-api-config
 data:
   FRONTEND_TOKEN: "7e9a1b2c3d4f5a60"
-
-
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
@@ -16,8 +13,6 @@ type: Opaque
 stringData:
   APP_SECRET: "5f8b3c2a9d4e7f10"
   API_KEY: "ab12cd34ef56gh78"
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,3 +40,7 @@ spec:
         name: k8s-api-config
       - secretRef:
         name: k8s-api-secret
+
+
+
+        

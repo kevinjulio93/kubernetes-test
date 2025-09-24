@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 
-const API_BASE = process.env.API_BASE || 'http://127.0.0.1:5000';
+const API_BASE = process.env.API_BASE ;
 
 // Servir ruta de configuración para que el frontend pueda leer la URL
 app.get('/config', (req, res) => {
