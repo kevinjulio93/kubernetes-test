@@ -33,13 +33,34 @@ spec:
       containers:
         - name: k8s-api-container
           image: docker.io/kevinjuliom93/k8s-api:v4
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
-      envFrom:
-      - configMapRef:
-        name: k8s-api-config
-      - secretRef:
-        name: k8s-api-secret
+          envFrom:
+            - configMapRef:
+                name: k8s-api-config
+            - secretRef:
+                name: k8s-api-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-api
+spec:
+  selector:
+    app: k8s-api
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
 
 
 

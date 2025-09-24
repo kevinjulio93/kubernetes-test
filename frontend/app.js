@@ -1,4 +1,4 @@
-let API_BASE = 'http://127.0.0.1:5000';
+let API_BASE = 'http://k8s-api.kevin-space.svc';
 
 async function loadConfig() {
   try {
