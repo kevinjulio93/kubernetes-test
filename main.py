@@ -67,6 +67,3 @@ def delete_mascota(nombre):
 if __name__ == '__main__':
     # Ejecutar la app en modo debug en el puerto 5000 por defecto
     app.run(debug=True)
-
-
-    docker run -d -p 5000:5000 --name k8s-api -e APP_SECRET="$APP_SECRET" -e API_KEY="$API_KEY" -e FRONTEND_TOKEN="$FRONTEND_TOKEN" docker.io/kevinjuliom93/k8s-api:v4
